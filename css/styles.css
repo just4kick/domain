@@ -3133,9 +3133,10 @@ input::-moz-focus-inner {
 }
 
 .s-header__logo img {
-    width: 68px;
-    height: 10px;
+    width: auto;
+    height: 120px; /* Adjust this based on your desired logo height */
     margin-bottom: 0;
+    display: block;
 }
 
 
@@ -4904,6 +4905,300 @@ html.no-csstransitions .s-hero__content {
     transform: scale(1);
 }
 
+
+/* MODIFIED css: NEW */
+
+/* Modal Styles - Improved & More Responsive */
+/* Modal Styles - Updated with Two Columns and Brand Color */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.is-visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #d9083c; /* Brand red color */
+    margin: 0 auto;
+    padding: var(--vspace-0_75);  /* Reduced padding to decrease height */
+    border-radius: 8px;  /* Increased border radius */
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease-out;
+    position: relative;
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+}
+
+.modal.is-visible .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    right: var(--vspace-1);
+    top: var(--vspace-1);
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    color: white;
+    margin-bottom: var(--vspace-1_5);
+    text-align: center;
+}
+
+/* Two-column layout for form */
+#contact-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#contact-form .form-field {
+    width: 48%;
+    margin-bottom: var(--vspace-0_100); /* Reduced bottom margin */
+}
+
+/* Make message field and submit button full width */
+#contact-form .form-field:nth-last-child(2),
+#contact-form .btn-container {
+    width: 100%;
+}
+
+/* Container for the submit button */
+#contact-form .btn-container {
+    text-align: center;
+    margin-top: var(--vspace-1);
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: var(--vspace-0_5);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--color-1); /* Keep the main brand red color for text */
+    background-color: white; /* Change to white background */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    padding: 0.8rem 1.2rem; /* Slightly more compact padding */
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: rgba(217, 8, 60, 0.5); /* Lighter version of brand red */
+}
+
+/* Fix dropdown alignment */
+.ss-custom-select::after {
+    border-bottom: 2px solid #d9083c;
+    border-right: 2px solid #d9083c;
+}
+
+.ss-custom-select select {
+    color: var(--color-1);
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    width: 100%;
+    padding-right: 3rem;
+}
+
+/* Make selected dropdown options match */
+.ss-custom-select select option {
+    color: black;
+    background-color: white;
+}
+
+/* Fix button styling in modal */
+#contact-form button[type="submit"] {
+    margin-top: var(--vspace-0_25);
+    padding: 0 2.4rem;
+    height: calc(var(--vspace-btn) - 0.8rem);
+}
+
+#contact-form button[type="submit"]:hover {
+    background-color: transparent;
+    color: white;
+}
+
+/* Response message styling */
+.message-success {
+    display: none;
+    text-align: center;
+    color: white;
+    padding: var(--vspace-1);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-top: var(--vspace-1);
+}
+
+.message-success.is-visible {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+.modal-content h3 {
+    margin-bottom: var(--vspace-1);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 800px) {
+    .modal-content {
+        width: 90%;
+        padding: var(--vspace-1_5);
+    }
+    
+    #contact-form .form-field {
+        width: 100%; /* Stack on mobile */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        padding: var(--vspace-1);
+    }
+    
+    .modal-close {
+        right: var(--vspace-0_75);
+        top: var(--vspace-0_75);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .modal-content {
+        width: 95%;
+        padding: var(--vspace-0_75);
+    }
+    
+    .modal-content h3 {
+        font-size: var(--text-md);
+        margin-bottom: var(--vspace-1);
+    }
+}
+
+/* Fix button alignment in modal */
+#contact-form button[type="submit"] {
+    margin-top: var(--vspace-0_5);
+    width: 100%;
+}
+
+/* Fix message success */
+.message-success {
+    display: none;
+    text-align: center;
+    color: var(--color-white);
+    padding: var(--vspace-1);
+    background-color: var(--color-1-darker);
+    border-radius: 4px;
+    margin-top: var(--vspace-1);
+}
+
+.message-success.is-visible {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* Form field input text color - add to existing modal styles */
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--color-1); /* Using the main brand red color */
+}
+
+/* When inputs are focused, maintain the red text color */
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="search"]:focus, 
+input[type="text"]:focus, 
+input[type="tel"]:focus, 
+input[type="url"]:focus, 
+input[type="password"]:focus, 
+textarea:focus, 
+select:focus {
+    color: var(--color-1);
+    -webkit-box-shadow: 0 0 8px var(--color-gray-15);
+    box-shadow: 0 0 8px var(--color-gray-15);
+    border: 1px solid var(--color-gray-15);
+}
+
+/* Make selected dropdown options also red */
+.ss-custom-select select option {
+    color: var(--color-1);
+    background-color: var(--color-gray-18);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add when modal is open to prevent body scrolling */
+body.modal-open {
+    overflow: hidden;
+}
+/* MODIFIED END */
+
+/* Error message styling */
+.message-error {
+    display: none;
+    text-align: center;
+    color: white;
+    padding: var(--vspace-1);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    margin-top: var(--vspace-1);
+}
+
+.message-error h4 {
+    color: white;
+    font-size: var(--text-lg);
+}
+
+.message-error p {
+    font-size: var(--text-md);
+}
+
+.message-error.is-visible {
+    display: block;
+    animation: fadeIn 0.5s;
+}
 
 /* ------------------------------------------------------------------- 
  * responsive:
